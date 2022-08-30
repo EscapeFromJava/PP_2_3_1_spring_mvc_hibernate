@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+<table th:style="'border: 1px solid black; border-collapse: collapse;'">
+    <thead>
+    <tr>
+        <th th:style="'border: 1px solid black;'">Id</th>
+        <th th:style="'border: 1px solid black;'">First name</th>
+        <th th:style="'border: 1px solid black;'">Second name</th>
+        <th th:style="'border: 1px solid black;'">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${allUsers}">
+        <td th:text="${user.getId()}" th:style="'border: 1px solid black;'"></td>
+        <td th:text="${user.getFirstName()}" th:style="'border: 1px solid black;'"></td>
+        <td th:text="${user.getSecondName()}" th:style="'border: 1px solid black;'"></td>
+        <td th:text="${user.getEmail()}" th:style="'border: 1px solid black;'"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<input type="button" value="AddNewUser" onclick="window.location.href = 'addNewUser'">
+</body>
+</html>
