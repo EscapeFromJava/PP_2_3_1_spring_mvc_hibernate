@@ -10,4 +10,7 @@ public interface UserService {
 
     public void saveUser(User user);
 
+    public User getUser(Long id);
+    public void deleteUser(Long id);
+
 }

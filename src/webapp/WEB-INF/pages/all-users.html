@@ -13,18 +13,37 @@
         <th th:style="'border: 1px solid black;'">First name</th>
         <th th:style="'border: 1px solid black;'">Second name</th>
         <th th:style="'border: 1px solid black;'">Email</th>
+        <th th:style="'border: 1px solid black;'">Update</th>
+        <th th:style="'border: 1px solid black;'">Delete</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="user : ${allUsers}">
         <td th:text="${user.getId()}" th:style="'border: 1px solid black;'"></td>
-        <td th:text="${user.getFirstName()}" th:style="'border: 1px solid black;'"></td>
-        <td th:text="${user.getSecondName()}" th:style="'border: 1px solid black;'"></td>
-        <td th:text="${user.getEmail()}" th:style="'border: 1px solid black;'"></td>
+        <td>
+            <input type="text" th:value="*{user.getFirstName()}"/>
+        </td>
+        <td>
+            <input type="text" th:value="*{user.getSecondName()}"/>
+        </td>
+        <td>
+            <input type="text" th:value="*{user.getEmail()}"/>
+        </td>
+
+        <td>
+            <a th:href="@{/updateUser/__${user.getId()}__}">
+                <button th:style="'height: 25px; width: 50px; background-color: green'"></button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/deleteUser/__${user.getId()}__}">
+                <button th:style="'height: 25px; width: 50px; background-color: red'"></button>
+            </a>
+        </td>
     </tr>
     </tbody>
 </table>
 <br>
-<input type="button" value="AddNewUser" onclick="window.location.href = 'addNewUser'">
+<input type="button" value="Add user" onclick="window.location.href = 'addNewUser'">
 </body>
 </html>
