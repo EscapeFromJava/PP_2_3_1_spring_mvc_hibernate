@@ -6,14 +6,17 @@ import web.dao.UserDao;
 import web.model.User;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final UserDao userDao;
+
     @Autowired
-    private UserDao userDao;
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     @Transactional
@@ -38,4 +41,5 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }
+
 }

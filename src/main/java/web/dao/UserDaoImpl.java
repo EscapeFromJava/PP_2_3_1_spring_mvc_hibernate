@@ -9,18 +9,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Repository
 public class UserDaoImpl implements UserDao {
 
+    private final EntityManagerFactory entityManagerFactory;
+
     @Autowired
-    private EntityManagerFactory entityManagerFactory;
+    public UserDaoImpl(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
 
     @Override
     public List<User> getAllUsers() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<User> users = entityManager.createQuery("FROM User", User.class).getResultList();
-        return users;
+        return entityManager.createQuery("FROM User", User.class).getResultList();
     }
 
     @Override
