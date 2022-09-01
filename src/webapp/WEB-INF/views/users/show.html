@@ -12,7 +12,20 @@
 <p th:text="${user.getSecondName()}"/>
 <h2>Email:</h2>
 <p th:text="${user.getEmail()}"/>
-<a th:href="@{/users}" th:text="Back"/>
+
+<form th:action="@{/users/{id}/edit(id=${user.id})}">
+    <button>Edit</button>
+</form>
+<br/>
+<form th:method="DELETE" th:action="@{/users/{id}(id=${user.id})}">
+    <input type="submit" value="Delete">
+</form>
+
+<hr/>
+
+<form th:action="@{/users}">
+    <button>Back</button>
+</form>
 
 </body>
 </html>

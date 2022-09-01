@@ -1,15 +1,12 @@
 package web.dao;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -47,6 +44,14 @@ public class UserDaoImpl implements UserDao {
         entityManager.getTransaction().begin();
         User user = entityManager.find(User.class, id);
         entityManager.remove(user);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void updateUser(User user) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.merge(user);
         entityManager.getTransaction().commit();
     }
 }
