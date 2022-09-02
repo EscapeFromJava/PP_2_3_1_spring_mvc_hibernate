@@ -1,14 +1,13 @@
 package web.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,7 +19,7 @@ public class User {
     private String firstName;
     @Column(name = "second_name")
     private String secondName;
-    @Column(name = "email")
+
     private String email;
 
     public User(String firstName, String secondName, String email) {

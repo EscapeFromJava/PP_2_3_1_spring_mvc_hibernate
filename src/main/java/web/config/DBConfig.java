@@ -10,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import web.model.User;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
@@ -33,7 +34,7 @@ public class DBConfig {
     private String hbm2ddl;
 
     @Bean
-    public EntityManagerFactory getEntityManagerFactory() {
+    public EntityManager getEntityManager() {
 
         Properties properties = new Properties();
         properties.put(Environment.DRIVER, driver);
@@ -50,6 +51,8 @@ public class DBConfig {
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 
-        return configuration.buildSessionFactory(serviceRegistry);
+        EntityManagerFactory entityManagerFactory = configuration.buildSessionFactory(serviceRegistry);
+
+        return entityManagerFactory.createEntityManager();
     }
 }
